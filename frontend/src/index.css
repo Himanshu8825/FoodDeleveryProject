@@ -6,7 +6,8 @@
 .header {
   background: url("/header_img.png") no-repeat;
   background-size: contain;
-  
 }
 
-
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+}
