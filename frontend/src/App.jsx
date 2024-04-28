@@ -8,6 +8,7 @@ import {
   ContactUs,
   Cart,
   PlaceOrder,
+  Footer,
 } from "./index";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<PlaceOrder />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

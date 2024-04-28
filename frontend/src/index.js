@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import ExploreMenu from "./components/ExploreMenu";
 import FoodDisplay from "./components/FoodDisplay";
 import FoodItem from "./components/FoodItem";
+import Footer from "./components/Footer";
+import AppDownload from "./components/AppDownload";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Mobile from "./pages/Mobile";
@@ -22,4 +24,6 @@ export {
   ExploreMenu,
   FoodDisplay,
   FoodItem,
+  Footer,
+  AppDownload,
 };
