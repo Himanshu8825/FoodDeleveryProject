@@ -58,12 +58,14 @@ const Cart = () => {
             <div className="border-b border-zinc-300 mt-2 mb-2 w-full "></div>
             <div className="flex justify-between text-[#555] pl-2 pr-2">
               <p>Delivery Fee</p>
-              <p>&#8377;{150}</p>
+              <p>&#8377;{getTotalAmount() === 0 ? 0 : 99}</p>
             </div>
             <div className="border-b-2 border-zinc-500 w-full mb-2 mt-2 "></div>
             <div className="flex justify-between text-black font-medium text-lg pl-2 pr-2 ">
               <p className=" ">Total</p>
-              <p>&#8377;{getTotalAmount() + 150}</p>
+              <p>
+                &#8377;{getTotalAmount() === 0 ? 0 : getTotalAmount() + 150}
+              </p>
             </div>
           </div>
           <Link to="/order">
