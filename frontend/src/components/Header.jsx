@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <div className="md:pl-16 pl-6 md:pr-16 pr-6 md:pt-8 mt-[5rem]  md:pb-6 font-poppins ">
       <div className="header h-[38vw] w-full  relative mx-auto " id="home">
-        <div className="absolute flex flex-col items-start sm:gap-4 gap-2 w-1/2 sm:bottom-[20%] bottom-[20%]  left-[6%] ">
+        <div className="absolute flex flex-col items-start sm:gap-4 gap-2 w-1/2 sm:bottom-[10%] bottom-[20%]  left-[6%] ">
           <h2 className=" font-medium text-white md:text-[4.5vw] text-[4vw] ">
             Order your favorite food here
           </h2>

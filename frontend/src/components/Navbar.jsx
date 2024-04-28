@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LuSearch } from "react-icons/lu";
 import { MdAddShoppingCart } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { StoreContext } from "../context/StoreContext";
 
-const Navbar = () => {
+const Navbar = ({ setshowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const { getTotalAmount } = useContext(StoreContext);
 
   return (
-    <nav className="flex justify-between items-center md:pl-16 sm:pl-10 pl-6 md:pr-16 sm:pr-10 pr-8 pt-4 pb-6  font-poppins fixed top-0 w-full bg-white z-10">
+    <nav className="flex justify-between items-center md:pl-16 sm:pl-10 pl-6 md:pr-16 sm:pr-10 pr-8 pt-4 pb-4  font-poppins fixed top-0 w-full bg-white z-10">
       <h1 className="md:text-4xl text-2xl font-semibold text-primary hover:opacity-80 cursor-pointer">
         Foodie
       </h1>
-      <ul className="md:flex sm:flex hidden items-center list-none no-underline gap-4 cursor-pointer text-secondary font-medium text-lg ">
+      <ul className="md:flex sm:flex hidden items-center list-none no-underline gap-8 cursor-pointer text-secondary font-medium text-lg ">
         <li>
           <NavLink
-            exact
             to="/"
             onClick={() => setMenu("home")}
             className={menu === "home" ? "border-b-2 border-secondary" : ""}
@@ -22,6 +23,7 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
+
         <li>
           <a
             href="#explore-menu"
@@ -59,10 +61,22 @@ const Navbar = () => {
       <div className="flex md:gap-6 gap-4 items-center">
         <LuSearch className="text-secondary text-2xl cursor-pointer " />
         <div className="relative">
-          <MdAddShoppingCart className="text-secondary text-2xl cursor-pointer  " />
-          <div className="absolute min-w-[10px] min-h-[10px] bg-primary rounded-xl -top-[0px] -right-[0px]"></div>
+          <Link to="/cart">
+            <MdAddShoppingCart className="text-secondary text-2xl cursor-pointer  " />
+
+            <div
+              className={
+                getTotalAmount() === 0
+                  ? ""
+                  : "absolute min-w-[10px] min-h-[10px] bg-primary rounded-xl -top-[0px] -right-[0px]"
+              }
+            ></div>
+          </Link>
         </div>
-        <button className="md:px-4 px-2 py-1 rounded-2xl border border-primary text-secondary font-medium hover:opacity-90 ">
+        <button
+          className="md:px-4 px-2 py-1 rounded-2xl border border-primary text-secondary font-medium hover:opacity-90 "
+          onClick={() => setshowLogin(true)}
+        >
           Sign in
         </button>
       </div>
