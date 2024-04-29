@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { assets, categories, url } from "../assets/assets";
+import { categories, url } from "../assets/assets";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Add = () => {
   const URLBACKEND = url;
   const [image, setImage] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     productName: "",
     productDescription: "",
@@ -24,7 +26,7 @@ const Add = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setLoading(true);
     let Data = new FormData();
     Data.append("name", formData.productName);
     Data.append("description", formData.productDescription);
@@ -34,7 +36,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(`${URLBACKEND}/food/add`, Data);
-      if (response.data.success) {
+      if (response.status === 200) {
         setFormData({
           productName: "",
           productDescription: "",
@@ -42,11 +44,15 @@ const Add = () => {
           productPrice: "",
         });
         setImage(false);
+        toast.success(response.data.message);
       } else {
         console.error("Failed to add food:", response.data.message);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.error("Error adding food:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -165,9 +171,13 @@ const Add = () => {
             </label>
           </div>
         </div>
-        <div className="w-[60%]  mt-4 flex justify-center">
-          <button className="before:ease relative    px-6  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80">
-            Add Product
+        <div className="w-[60%]  mt-4 flex justify-center ">
+          <button
+            disabled={loading}
+            type="submit"
+            className="before:ease relative  px-6   h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80"
+          >
+            {loading ? "Please wait..." : "Add Food Detail"}
           </button>
         </div>
       </form>
