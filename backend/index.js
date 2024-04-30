@@ -24,10 +24,11 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3001",
+    origin: ["http://localhost:3001", "http://localhost:5173"],
   })
 );
-app.use("user", router);
+
+app.use("/user", router);
 app.use("/food", foodRouter);
 app.use(express.json());
 app.use(cors());

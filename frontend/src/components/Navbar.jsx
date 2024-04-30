@@ -1,12 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import { LuSearch } from "react-icons/lu";
 import { MdAddShoppingCart } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Navbar = ({ setshowLogin }) => {
+  const navigate = useNavigate("");
   const [menu, setMenu] = useState("home");
-  const { getTotalAmount } = useContext(StoreContext);
+  const { getTotalAmount, token, setToken } = useContext(StoreContext);
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    navigate("/");
+  };
 
   return (
     <nav className="flex justify-between items-center md:pl-16 sm:pl-10 pl-6 md:pr-16 sm:pr-10 pr-8 pt-4 pb-4  font-poppins fixed top-0 w-full bg-white z-10">
@@ -73,12 +83,31 @@ const Navbar = ({ setshowLogin }) => {
             ></div>
           </Link>
         </div>
-        <button
-          className="md:px-4 px-2 py-1 rounded-2xl border border-primary text-secondary font-medium hover:opacity-90 "
-          onClick={() => setshowLogin(true)}
-        >
-          Sign in
-        </button>
+        {!token ? (
+          <button
+            className="md:px-4 px-2 py-1 rounded-2xl border hover:bg-primary hover:text-white border-primary text-secondary font-medium hover:opacity-90 "
+            onClick={() => setshowLogin(true)}
+          >
+            Sign in
+          </button>
+        ) : (
+          <div className="relative group">
+            <AccountCircleIcon className=" cursor-pointer" />
+            <ul className="absolute hidden  right-0 z-10 bg-white border border-gray-200 py-2 rounded shadow-lg group-hover:block">
+              <li className="flex items-center space-x-2 px-4 hover:bg-gray-100 cursor-pointer ">
+                <LocalMallIcon />
+                <p>Orders</p>
+              </li>
+              <li
+                onClick={logOut}
+                className="flex items-center space-x-2 px-4 hover:bg-gray-100 cursor-pointer"
+              >
+                <LogoutIcon />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   );

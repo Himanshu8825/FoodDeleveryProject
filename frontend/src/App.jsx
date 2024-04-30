@@ -8,12 +8,16 @@ import {
   Footer,
   LogInPopUp,
 } from "./index";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const App = () => {
   const [showLogin, setshowLogin] = useState(false);
   return (
     <div>
-      {showLogin ? <LogInPopUp setshowLogin = {setshowLogin} /> : <></>}
+      {showLogin ? <LogInPopUp setshowLogin={setshowLogin} /> : <></>}
+      <ToastContainer />
       <Navbar setshowLogin={setshowLogin} />
       <Routes>
         <Route path="/" element={<Home />} />
