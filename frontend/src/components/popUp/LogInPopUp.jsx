@@ -95,7 +95,7 @@ const LogInPopUp = ({ setshowLogin }) => {
               htmlFor="email"
               className="flex items-center md:w-[350px] sm:w-[350px] w-[250px] h-[45px] border-2 rounded-lg bg-[#f0e4f2] mt-6"
             >
-              <PersonIcon className="text-gray-400 ml-2" fontSize="small" />
+              <EmailIcon className="text-gray-400 ml-2" fontSize="small" />
               <input
                 type="text"
                 id="email"

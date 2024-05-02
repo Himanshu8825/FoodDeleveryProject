@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import { StoreContext } from "../context/StoreContext";
@@ -10,12 +10,14 @@ import PublicIcon from "@mui/icons-material/Public";
 import PhoneIcon from "@mui/icons-material/Phone";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const PlaceOrder = () => {
   const { getTotalAmount, food_list, token, cartItems } =
     useContext(StoreContext);
 
   const url = "http://localhost:3000/order/place";
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -66,6 +68,16 @@ const PlaceOrder = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/cart");
+      toast.error("Please login to continue");
+    } else if (getTotalAmount() === 0) {
+      navigate("/cart");
+      toast.error("Your cart is empty");
+    }
+  }, [token]);
 
   return (
     <div className="md:pl-16 sm:pl-10 pl-6 md:pr-16 sm:pr-10 pr-8 pt-[5rem] pb-4 font-poppins">

@@ -12,10 +12,7 @@ const Navbar = ({ setshowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalAmount, token, setToken } = useContext(StoreContext);
 
-  if (!token) {
-    // Render loading state or redirect to login page
-    return null;
-  }
+  
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -99,7 +96,7 @@ const Navbar = ({ setshowLogin }) => {
           <div className="relative group">
             <AccountCircleIcon className="cursor-pointer hover:text-primary"  />
             <ul className="absolute hidden -right-10  z-10 bg-white border border-gray-200 py-2 rounded shadow-lg group-hover:block">
-              <li className="flex items-center text-primary space-x-2 px-4 hover:bg-gray-100 cursor-pointer mt-2 mb-2 pb-2 ">
+              <li onClick={()=>navigate('/myorders')} className="flex items-center text-primary space-x-2 px-4 hover:bg-gray-100 cursor-pointer mt-2 mb-2 pb-2 ">
                 <LocalMallIcon />
                 <p>Orders</p>
               </li>

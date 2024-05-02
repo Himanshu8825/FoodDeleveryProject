@@ -69,4 +69,31 @@ const placeOrder = async (req, res) => {
   }
 };
 
-module.exports = placeOrder;
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
+  try {
+    if (success === "true") {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      res.status(200).json({ message: "Payment Successful" });
+    } else {
+      await orderModel.findByIdAndDelete(orderId);
+      res.status(200).json({ message: "Payment Unsuccessful" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Payment Failed" });
+  }
+};
+
+//!User Orders
+const userOrder = async (req, res) => {
+  try {
+    const orsers = await orderModel.find({ userId: req.body.userId });
+    res.status(200).json({ data: orsers });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
+module.exports = { placeOrder, verifyOrder, userOrder };

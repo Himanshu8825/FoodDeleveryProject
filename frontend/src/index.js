@@ -6,6 +6,8 @@ import FoodItem from "./components/FoodItem";
 import Footer from "./components/Footer";
 import AppDownload from "./components/AppDownload";
 import LogInPopUp from "./components/popUp/LogInPopUp";
+import VerifyPayment from "./pages/VerifyPayment";
+import MyOrder from "./pages/MyOrder";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import PlaceOrder from "./pages/PlaceOrder";
@@ -22,4 +24,6 @@ export {
   Footer,
   AppDownload,
   LogInPopUp,
+  VerifyPayment,
+  MyOrder,
 };
