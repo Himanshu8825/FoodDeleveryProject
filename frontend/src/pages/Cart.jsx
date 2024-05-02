@@ -22,7 +22,7 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <div key={index}>
                 <div
                   key={index}
                   className="grid grid-cols-6 items-center  text-black text-[1.1vw] pt-4 pb-4 font-medium "
@@ -64,7 +64,7 @@ const Cart = () => {
             <div className="flex justify-between text-black font-medium text-lg pl-2 pr-2 ">
               <p className=" ">Total</p>
               <p>
-                &#8377;{getTotalAmount() === 0 ? 0 : getTotalAmount() + 150}
+                &#8377;{getTotalAmount() === 0 ? 0 : getTotalAmount() + 99}
               </p>
             </div>
           </div>

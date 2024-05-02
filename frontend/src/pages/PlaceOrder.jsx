@@ -8,10 +8,15 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import MapIcon from "@mui/icons-material/Map";
 import PublicIcon from "@mui/icons-material/Public";
 import PhoneIcon from "@mui/icons-material/Phone";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
-  const { cartItems, food_list, removeToCart, getTotalAmount } =
+  const { getTotalAmount, food_list, token, cartItems } =
     useContext(StoreContext);
+
+  const url = "http://localhost:3000/order/place";
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,9 +35,36 @@ const PlaceOrder = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setLoading(true);
+    let orderItems = [];
+    food_list.forEach((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    });
+    let orderData = {
+      address: formData,
+      items: orderItems,
+      amount: getTotalAmount() + 99,
+    };
+    try {
+      const res = await axios.post(url, orderData, { headers: { token } });
+      if (res.status === 200) {
+        const { session_url } = res.data;
+        window.location.replace(session_url);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,6 +87,7 @@ const PlaceOrder = () => {
                 fontSize="small"
               />
               <input
+                required
                 type="text"
                 id="firstName"
                 name="firstName"
@@ -69,6 +102,7 @@ const PlaceOrder = () => {
             >
               <PersonIcon className="text-gray-400 ml-2" fontSize="small" />
               <input
+                required
                 type="text"
                 id="lastName"
                 name="lastName"
@@ -84,11 +118,11 @@ const PlaceOrder = () => {
           >
             <EmailIcon className="text-gray-400 ml-2" fontSize="small" />
             <input
+              required
               type="email"
               id="email"
               name="email"
               placeholder="Email"
-              required
               className="bg-transparent outline-none ml-2 py-2  w-full"
               onChange={handleChange}
             />
@@ -99,11 +133,11 @@ const PlaceOrder = () => {
           >
             <LocationOnIcon className="text-gray-400 ml-2" fontSize="small" />
             <input
+              required
               type="text"
               id="streetAddress"
               name="streetAddress"
               placeholder="Street Address"
-              required
               className="bg-transparent outline-none ml-2  py-2 w-full"
               onChange={handleChange}
             />
@@ -118,6 +152,7 @@ const PlaceOrder = () => {
                 fontSize="small"
               />
               <input
+                required
                 type="text"
                 id="city"
                 name="city"
@@ -132,6 +167,7 @@ const PlaceOrder = () => {
             >
               <HomeWorkIcon className="text-gray-400 ml-2" fontSize="small" />
               <input
+                required
                 type="text"
                 id="state"
                 name="state"
@@ -148,6 +184,7 @@ const PlaceOrder = () => {
             >
               <MapIcon className="text-gray-400 ml-2" fontSize="small" />
               <input
+                required
                 type="text"
                 id="zipCode"
                 name="zipCode"
@@ -162,6 +199,7 @@ const PlaceOrder = () => {
             >
               <PublicIcon className="text-gray-400 ml-2" fontSize="small" />
               <input
+                required
                 type="text"
                 id="country"
                 name="country"
@@ -177,6 +215,7 @@ const PlaceOrder = () => {
           >
             <PhoneIcon className="text-gray-400 ml-1" fontSize="small" />
             <input
+              required
               id="phone"
               name="phone"
               placeholder="Phone Number"
@@ -202,14 +241,18 @@ const PlaceOrder = () => {
               <div className="flex justify-between text-black font-medium text-lg pl-2 pr-2 ">
                 <p className=" ">Total</p>
                 <p>
-                  &#8377;{getTotalAmount() === 0 ? 0 : getTotalAmount() + 150}
+                  &#8377;{getTotalAmount() === 0 ? 0 : getTotalAmount() + 99}
                 </p>
               </div>
             </div>
 
             <div className="w-full">
-              <button className="before:ease relative flex mx-auto  items-center justify-center  px-6  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80">
-                PROCEED TO PAYMENT
+              <button
+                disabled={loading}
+                type="submit"
+                className="before:ease relative flex mx-auto  items-center justify-center  px-6  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80"
+              >
+                {loading ? "Please wait..." : "Add Food Detail"}
               </button>
             </div>
           </div>

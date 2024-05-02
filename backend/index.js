@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./src/routes/userRoute.js");
 const foodRouter = require("./src/routes/foodRoute.js");
+const cartRouter = require("./src/routes/cartRoute.js");
+const orderRouter = require("./src/routes/orderRoute.js");
 
 //!Configuration
 const mongoDB = process.env.MONGODB_URI;
@@ -28,10 +30,12 @@ app.use(
   })
 );
 
+// Parse JSON bodies
+app.use(express.json());
 app.use("/user", router);
 app.use("/food", foodRouter);
-app.use(express.json());
-app.use(cors());
+app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 
 //!Api routes
 app.get("/", (req, res) => {

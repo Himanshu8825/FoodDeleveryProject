@@ -7,7 +7,7 @@ import { IoBagCheckOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const location = useLocation();
-  const [activePath, setActivePath] = useState("");
+  const [activePath, setActivePath] = useState("/add");
 
   useEffect(() => {
     setActivePath(location.pathname);

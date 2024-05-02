@@ -88,7 +88,7 @@ const Add = () => {
           <img
             src={image ? URL.createObjectURL(image) : ""}
             alt=""
-            className="mt-2"
+            className="mt-2 rounded-xl "
           />
         </div>
         <div className="w-[60%]">
