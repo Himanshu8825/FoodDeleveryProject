@@ -57,7 +57,7 @@ const Add = () => {
   };
 
   return (
-    <div className="w-[70%]  ml-[5vw] mt-[50px]  font-poppins text-black font-medium">
+    <div className="w-[70%]  ml-[5vw] mt-[20px]  font-poppins text-black font-medium">
       <h1 className="text-3xl pb-6 pt-4 text-primary text-center">
         Add Food Details Here
       </h1>

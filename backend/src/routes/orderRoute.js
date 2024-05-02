@@ -4,6 +4,8 @@ const {
   placeOrder,
   verifyOrder,
   userOrder,
+  listOrder,
+  updateStatus,
 } = require("../controllers/orderController.js");
 
 const orderRouter = express.Router();
@@ -11,5 +13,7 @@ const orderRouter = express.Router();
 orderRouter.post("/place", authMiddleware, placeOrder);
 orderRouter.post("/verify", verifyOrder);
 orderRouter.post("/userorder", authMiddleware, userOrder);
+orderRouter.get("/list", listOrder);
+orderRouter.post("/status", updateStatus);
 
 module.exports = orderRouter;

@@ -44,7 +44,7 @@ const Lists = () => {
   }, []);
 
   return (
-    <div className="w-full md:pl-16 pl-6 md:pr-16 pr-6 pt-10 font-poppins text-black ">
+    <div className="w-full md:pl-16 pl-6 md:pr-16 pr-6 pt-6 font-poppins text-black ">
       <h1 className="text-3xl pb-6  text-primary text-center">All Food List</h1>
       <div className="">
         <div className="grid md:grid-cols-5 sm:grid-cols-5 grid-cols-3 pt-[12px] pb-[12px] md:pl-[15px] pl-2 md:pr-[15px] pr-2 items-center md:gap-[10px] border border-[#cacaca]   font-medium text-primary text-xs">

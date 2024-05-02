@@ -14,7 +14,7 @@ const App = () => {
         <Sidebar />
 
         <Routes>
-          <Route path="/add" element={<Add />} />
+          <Route path="/" element={<Add />} />
           <Route path="/list" element={<Lists />} />
           <Route path="/orders" element={<Orders />} />
         </Routes>

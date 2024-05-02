@@ -48,7 +48,7 @@ const MyOrder = () => {
                 <span className="text-primary text-lg">&#x25cf;</span>
                 <b className="text-[#454545] ml-1">{order.status}</b>
               </p>
-              <button className="before:ease md:w-[120px] w-full relative m-4 flex md:mx-0 items-center justify-center  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80">
+              <button onClick={fetchOrder} className="before:ease md:w-[120px] w-full relative m-4 flex md:mx-0 items-center justify-center  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80">
                 Track Order
               </button>
             </div>

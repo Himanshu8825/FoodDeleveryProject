@@ -10,3 +10,7 @@
   scroll-behavior: smooth;
 }
 
+.example {
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+}
+
