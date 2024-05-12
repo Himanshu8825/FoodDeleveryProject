@@ -5,6 +5,7 @@ const { signupUser, longinUser } = require("../controllers/userController.js");
 const router = express.Router();
 router.use(express.json());
 
+//!user route
 router.post("/signup", signupUser);
 router.post("/login", longinUser);
 

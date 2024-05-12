@@ -8,7 +8,7 @@ const foodRouter = require("./src/routes/foodRoute.js");
 const cartRouter = require("./src/routes/cartRoute.js");
 const orderRouter = require("./src/routes/orderRoute.js");
 
-//!Configuration
+//!Configuration file
 const mongoDB = process.env.MONGODB_URI;
 const port = process.env.PORT;
 
