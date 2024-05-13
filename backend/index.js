@@ -26,7 +26,11 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3001", "http://localhost:5173"],
+    origin: [
+      "http://localhost:3001",
+      "http://localhost:5173",
+      "https://fooddelevery-z5mv.onrender.com/",
+    ],
   })
 );
 
