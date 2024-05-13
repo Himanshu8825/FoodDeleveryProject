@@ -29,7 +29,7 @@ app.use(
     origin: [
       "http://localhost:3001",
       "http://localhost:5173",
-      "https://fooddelevery-z5mv.onrender.com/",
+      "https://fooddelevery-z5mv.onrender.com",
     ],
   })
 );
