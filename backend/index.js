@@ -30,6 +30,7 @@ app.use(
       "http://localhost:3001",
       "http://localhost:5173",
       "https://fooddelevery-z5mv.onrender.com",
+      "https://foodieadmin.onrender.com"
     ],
   })
 );
