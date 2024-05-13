@@ -16,7 +16,7 @@ const PlaceOrder = () => {
   const { getTotalAmount, food_list, token, cartItems } =
     useContext(StoreContext);
 
-  const url = "http://localhost:3000/order/place";
+  const url = "https://fooddeleveryproject.onrender.com/order/place";
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({

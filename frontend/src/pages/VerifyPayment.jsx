@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const VerifyPayment = () => {
-  const url = "http://localhost:3000/order/verify";
+  const url = "https://fooddeleveryproject.onrender.com/order/verify";
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const success = searchParams.get("success");
